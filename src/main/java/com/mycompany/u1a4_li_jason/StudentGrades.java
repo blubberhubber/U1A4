@@ -26,21 +26,176 @@ public class StudentGrades extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titleLabel = new javax.swing.JLabel();
+        firstNameLabel = new javax.swing.JLabel();
+        lastNameLabel = new javax.swing.JLabel();
+        test1label = new javax.swing.JLabel();
+        test2Label = new javax.swing.JLabel();
+        test3Label = new javax.swing.JLabel();
+        test4Label = new javax.swing.JLabel();
+        firstNameField = new javax.swing.JTextField();
+        lastNameField = new javax.swing.JTextField();
+        test1Field = new javax.swing.JTextField();
+        test2Field = new javax.swing.JTextField();
+        test3Field = new javax.swing.JTextField();
+        test4Field = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        infoArea = new javax.swing.JTextArea();
+        outputField = new javax.swing.JTextField();
+        addButton = new javax.swing.JButton();
+        studentAvgButton = new javax.swing.JButton();
+        courseAvgButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 204));
+
+        titleLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 51, 51));
+        titleLabel.setText("Student Grades");
+
+        firstNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        firstNameLabel.setText("First Name:");
+
+        lastNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lastNameLabel.setText("Last Name:");
+
+        test1label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        test1label.setText("Test 1:");
+
+        test2Label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        test2Label.setText("Test 2:");
+
+        test3Label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        test3Label.setText("Test 3:");
+
+        test4Label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        test4Label.setText("Test 4:");
+
+        infoArea.setColumns(20);
+        infoArea.setRows(5);
+        jScrollPane1.setViewportView(infoArea);
+
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        studentAvgButton.setText("Student Average");
+        studentAvgButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentAvgButtonActionPerformed(evt);
+            }
+        });
+
+        courseAvgButton.setText("Course Average");
+        courseAvgButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                courseAvgButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(test4Label)
+                                    .addComponent(test1label)
+                                    .addComponent(test2Label)
+                                    .addComponent(test3Label))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(test4Field)
+                                    .addComponent(test1Field)
+                                    .addComponent(test2Field)
+                                    .addComponent(test3Field))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(firstNameLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lastNameLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(titleLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(outputField)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(studentAvgButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(courseAvgButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(firstNameLabel)
+                    .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lastNameLabel)
+                    .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(test1label)
+                            .addComponent(test1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(test2Label)
+                            .addComponent(test2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(test3Label)
+                            .addComponent(test3Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(test4Label)
+                            .addComponent(test4Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addButton)
+                    .addComponent(studentAvgButton)
+                    .addComponent(courseAvgButton))
+                .addGap(18, 18, 18)
+                .addComponent(outputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void studentAvgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentAvgButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_studentAvgButtonActionPerformed
+
+    private void courseAvgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseAvgButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_courseAvgButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +233,24 @@ public class StudentGrades extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton courseAvgButton;
+    private javax.swing.JTextField firstNameField;
+    private javax.swing.JLabel firstNameLabel;
+    private javax.swing.JTextArea infoArea;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField lastNameField;
+    private javax.swing.JLabel lastNameLabel;
+    private javax.swing.JTextField outputField;
+    private javax.swing.JButton studentAvgButton;
+    private javax.swing.JTextField test1Field;
+    private javax.swing.JLabel test1label;
+    private javax.swing.JTextField test2Field;
+    private javax.swing.JLabel test2Label;
+    private javax.swing.JTextField test3Field;
+    private javax.swing.JLabel test3Label;
+    private javax.swing.JTextField test4Field;
+    private javax.swing.JLabel test4Label;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
