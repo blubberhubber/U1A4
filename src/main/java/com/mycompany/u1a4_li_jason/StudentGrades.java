@@ -10,7 +10,8 @@ package com.mycompany.u1a4_li_jason;
  */
 public class StudentGrades extends javax.swing.JFrame {
     
-    double [][] grades = new double [30][4];
+    String [][] listt = new String [30][6];
+    int index = 0;
     
     /**
      * Creates new form StudentGrades
@@ -73,9 +74,12 @@ public class StudentGrades extends javax.swing.JFrame {
         test4Label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         test4Label.setText("Test 4:");
 
+        infoArea.setEditable(false);
         infoArea.setColumns(20);
         infoArea.setRows(5);
         jScrollPane1.setViewportView(infoArea);
+
+        outputField.setEditable(false);
 
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +194,83 @@ public class StudentGrades extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
+        
+        outputField.setText("");
+        String firstName = firstNameField.getText(), lastName = lastNameField.getText(), test1 = test1Field.getText(), test2 = test2Field.getText(), test3 = test3Field.getText(), test4 = test4Field.getText();
+        Boolean thereIsName = false, thereIsGrade = false, noRepeat = false;
+        
+        try{
+            
+            String arrayString = "";
+            
+            double numTest1 = Double.parseDouble(test1);
+            double numTest2 = Double.parseDouble(test2);
+            double numTest3 = Double.parseDouble(test3);
+            double numTest4 = Double.parseDouble(test4);
+            
+            if (!firstName.equals("") && !lastName.equals("")){
+                thereIsName = true;
+                if (!test1.equals("") && !test2.equals("") && !test3.equals("") && !test4.equals("")){
+                    thereIsGrade = true;
+                    if (index != 0){
+                        for (int i = 0; i < index; i++){
+                            for (int x = 0; x < 2; x++){
+                                if (!listt[i][x].equals(firstName) && !listt[i][x].equals(lastName)){
+                                    noRepeat = true;
+                                }
+                                else{
+                                    noRepeat = false;
+                                    outputField.setText("This student already exists.");
+                                    firstNameField.setText("");
+                                    lastNameField.setText("");
+                                }
+                            }
+                        }
+                    }
+                    else{
+                        noRepeat = true;
+                    }
+                }
+                else{
+                    outputField.setText("Please enter a numeric grade for each test.");
+                }
+            }
+            else{
+                outputField.setText("Please enter a first and last name.");
+            }
+            
+            if (thereIsName == true && thereIsGrade == true && noRepeat == true){
+                if (index < 30){
+                    
+                    listt[index][0] = firstName;
+                    listt[index][1] = lastName;
+                    listt[index][2] = test1;
+                    listt[index][3] = test2;
+                    listt[index][4] = test3;
+                    listt[index][5] = test4;
+                    index++;
+                    
+                    for (int i = 0; i < index; i++){
+                        for (int x = 0; x < 6; x++){
+                            arrayString += listt[i][x] + " ";
+                            infoArea.setText(arrayString);
+                        }
+                        arrayString += "\n";
+                    }  
+                }
+                else{
+                    outputField.setText("The list of students is full (30 students).");
+                }
+            }
+        }
+        catch (Exception e){
+            outputField.setText("You must enter a number for test results.");
+            test1Field.setText("");
+            test2Field.setText("");
+            test3Field.setText("");
+            test4Field.setText("");
+        }
+        
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void studentAvgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentAvgButtonActionPerformed
