@@ -196,70 +196,79 @@ public class StudentGrades extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         
         outputField.setText("");
-        String firstName = firstNameField.getText(), lastName = lastNameField.getText(), test1 = test1Field.getText(), test2 = test2Field.getText(), test3 = test3Field.getText(), test4 = test4Field.getText();
-        Boolean thereIsName = false, thereIsGrade = false, noRepeat = false;
+        String firstName = firstNameField.getText(), lastName = lastNameField.getText(), test1 = test1Field.getText(), test2 = test2Field.getText(), test3 = test3Field.getText(), test4 = test4Field.getText(), nom = "";
+        Boolean proceed = false;
         
         try{
             
             String arrayString = "";
             
-            double numTest1 = Double.parseDouble(test1);
-            double numTest2 = Double.parseDouble(test2);
-            double numTest3 = Double.parseDouble(test3);
-            double numTest4 = Double.parseDouble(test4);
-            
-            if (!firstName.equals("") && !lastName.equals("")){
-                thereIsName = true;
-                if (!test1.equals("") && !test2.equals("") && !test3.equals("") && !test4.equals("")){
-                    thereIsGrade = true;
-                    if (index != 0){
-                        for (int i = 0; i < index; i++){
-                            for (int x = 0; x < 2; x++){
-                                if (!listt[i][x].equals(firstName) && !listt[i][x].equals(lastName)){
-                                    noRepeat = true;
-                                }
-                                else{
-                                    noRepeat = false;
-                                    outputField.setText("This student already exists.");
-                                    firstNameField.setText("");
-                                    lastNameField.setText("");
+            if (index != 30){
+                if (!firstName.equals("") && !lastName.equals("")){
+                    if (!test1.equals("") && !test2.equals("") && !test3.equals("") && !test4.equals("")){
+                        double numTest1 = Double.parseDouble(test1), numTest2 = Double.parseDouble(test2), numTest3 = Double.parseDouble(test3), numTest4 = Double.parseDouble(test4);
+                        if (numTest1 >= 0 && numTest2 >= 0 && numTest3 >= 0 && numTest4 >= 0){
+                            if (index != 0){
+                                for (int i = 0; i < index; i++){
+                                    nom = listt[i][0] + listt[i][1];
+                                    if (!nom.equals(firstName + lastName)){
+                                        proceed = true;
+                                    }
+                                    else{
+                                        proceed = false;
+                                        outputField.setText("This student already exists.");
+                                        firstNameField.setText("");
+                                        lastNameField.setText("");
+                                        break;
+                                    }
                                 }
                             }
+                            else{
+                                proceed = true;
+                            }
+                        }
+                        else{
+                            outputField.setText("Test results should be positive.");
+                            test1Field.setText("");
+                            test2Field.setText("");
+                            test3Field.setText("");
+                            test4Field.setText("");
                         }
                     }
                     else{
-                        noRepeat = true;
+                        outputField.setText("Please enter a numeric grade for each test.");
                     }
                 }
                 else{
-                    outputField.setText("Please enter a numeric grade for each test.");
+                    outputField.setText("Please enter a first and last name.");
                 }
             }
             else{
-                outputField.setText("Please enter a first and last name.");
+                outputField.setText("The list is full, no one else can be added.");
+                firstNameField.setText("");
+                lastNameField.setText("");
+                test1Field.setText("");
+                test2Field.setText("");
+                test3Field.setText("");
+                test4Field.setText("");
             }
             
-            if (thereIsName == true && thereIsGrade == true && noRepeat == true){
-                if (index < 30){
-                    
-                    listt[index][0] = firstName;
-                    listt[index][1] = lastName;
-                    listt[index][2] = test1;
-                    listt[index][3] = test2;
-                    listt[index][4] = test3;
-                    listt[index][5] = test4;
-                    index++;
-                    
-                    for (int i = 0; i < index; i++){
-                        for (int x = 0; x < 6; x++){
-                            arrayString += listt[i][x] + " ";
-                            infoArea.setText(arrayString);
-                        }
-                        arrayString += "\n";
-                    }  
-                }
-                else{
-                    outputField.setText("The list of students is full (30 students).");
+            if (proceed == true){
+                listt[index][0] = firstName;
+                listt[index][1] = lastName;
+                listt[index][2] = test1;
+                listt[index][3] = test2;
+                listt[index][4] = test3;
+                listt[index][5] = test4;
+                index++;
+                
+                for (int i = 0; i < index; i++){
+                    arrayString += "Student " + (i+1) + ": " + listt[i][0] + " " + listt[i][1] + "   ";
+                    arrayString += "Grade 1: " + listt[i][2] + "%   ";
+                    arrayString += "Grade 2: " + listt[i][3] + "%   ";
+                    arrayString += "Grade 3: " + listt[i][4] + "%   ";
+                    arrayString += "Grade 4: " + listt[i][5] + "%\n";
+                    infoArea.setText(arrayString);
                 }
             }
         }
@@ -274,11 +283,57 @@ public class StudentGrades extends javax.swing.JFrame {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void studentAvgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentAvgButtonActionPerformed
-        // TODO add your handling code here:
+        
+        outputField.setText("");
+        String firstName = firstNameField.getText(), lastName = lastNameField.getText(), sumString = "";
+        boolean isThere = false;
+        
+        if (index != 0){
+            if (!firstName.equals("") && !lastName.equals("")){
+                for (int i = 0; i < index; i++){
+                    if ((firstName + lastName).equals(listt[i][0] + listt[i][1])){
+                        double g1 = Double.parseDouble(listt[i][2]), g2 = Double.parseDouble(listt[i][3]), g3 = Double.parseDouble(listt[i][4]), g4 = Double.parseDouble(listt[i][5]), sum = 0;
+                        sum = g1 + g2 + g3 + g4;
+                        sumString += (sum/4.0);
+                        outputField.setText(firstName + " " + lastName + "'s average is " + sumString + "%");
+                        isThere = true;
+                        break;
+                    }
+                }
+                if (isThere == false){
+                    outputField.setText("This student is not on the list.");
+                    firstNameField.setText("");
+                    lastNameField.setText("");
+                }
+            }
+            else{
+                outputField.setText("Enter a name to find their average.");
+            }
+        }
+        else{
+            outputField.setText("The list is empty.");
+        }
     }//GEN-LAST:event_studentAvgButtonActionPerformed
 
     private void courseAvgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseAvgButtonActionPerformed
-        // TODO add your handling code here:
+        
+        outputField.setText("");
+        double avg = 0, counter = 0;
+        
+        if (index != 0){
+            for (int i = 0; i < index; i++){
+                for (int x = 2; x < 6; x++){
+                    double temp = Double.parseDouble(listt[i][x]);
+                    counter++;
+                    avg += temp;
+                }
+            }
+            avg /= counter;
+            outputField.setText("The course average is " + avg + "%");
+        }
+        else{
+            outputField.setText("The list is empty.");
+        }
     }//GEN-LAST:event_courseAvgButtonActionPerformed
 
     /**
